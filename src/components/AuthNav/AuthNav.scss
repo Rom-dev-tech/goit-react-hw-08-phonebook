@@ -1,0 +1,18 @@
+@import 'styles/shared';
+
+.link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 700;
+  color: $indigo-accent;
+  font-size: 12px;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 20px;
+  }
+}
+
+.activeLink {
+  color: $indigo;
+}

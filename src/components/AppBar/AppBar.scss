@@ -1,0 +1,11 @@
+@import 'styles/shared';
+
+.header {
+  border-bottom: 1px solid $grey;
+}
+
+.header__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

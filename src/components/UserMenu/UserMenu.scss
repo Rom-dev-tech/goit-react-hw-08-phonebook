@@ -1,0 +1,39 @@
+@import 'styles/shared';
+
+.usermenu__wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.usermenu__avatar {
+  margin-right: 10px;
+  @media screen and (min-width: $tablet) {
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.usermenu__name {
+  font-weight: 700;
+  font-size: 12px;
+  text-align: center;
+  margin-right: 10px;
+  max-width: 150px;
+
+  @media screen and (min-width: $tablet) {
+    margin-right: 12px;
+    font-size: 18px;
+    max-width: 250px;
+  }
+}
+
+.usermenu__buuton {
+  color: $indigo;
+  padding: 3px 10px;
+  font-size: 12px;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 16px;
+  }
+}

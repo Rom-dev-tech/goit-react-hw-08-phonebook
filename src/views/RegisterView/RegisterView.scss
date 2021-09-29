@@ -1,0 +1,56 @@
+@import 'styles/shared';
+
+.register__wrapper {
+  height: 100vh;
+  background-color: pink;
+
+  @media screen and (min-width: $desktop) {
+    background-image: url('https://pixabay.com/get/gc21e435d19216420fd978159c35ffcd16574181758381b1c0f24571ae3fa4162350ea38e14199a96a8629b1fdd82a932d1864d85d26232d8a2cef75b29222650_1280.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+.register__title {
+  padding-top: 150px;
+  text-align: center;
+  color: $white;
+}
+
+.form {
+  width: 320px;
+  margin: 0 auto;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+
+  color: $white;
+}
+
+.register__button {
+  color: $indigo;
+  padding: 3px 10px;
+  border-radius: 5px;
+  border: 1px solid $indigo;
+  padding: 5px 10px;
+}
+
+.login__wrapper {
+  height: 100vh;
+  background-color: wheat;
+
+  @media screen and (min-width: $desktop) {
+    background-image: url('https://pixabay.com/get/g450416ee8cde2aa7fde5a143d78fc8c357e4dd85df4413bcb7761ab74369ece71d3c56ef5dee92baec0c3c2abfd5c81338fa57bb180fc4cf8f40fc268cce5cfc_1280.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+input {
+  border-radius: 5px;
+  border: none;
+  padding: 5px 10px;
+}

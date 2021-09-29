@@ -1,0 +1,31 @@
+@import 'styles/shared';
+
+.homeviews {
+  background-color: teal;
+
+  @media screen and (min-width: $desktop) {
+    background-image: url('https://pixabay.com/get/gd0f64085074fbe98ccb2e456e5a496fd8127726b9d714fd60feafb196a5625dd5ec2c7a88af5a69320bb75b41ea94589b3eb2477a3b5d1fb4abb7eb0c16d53c5_1280.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+.homeviews__wrapper {
+  height: 100vh;
+}
+
+.title {
+  padding-top: 50%;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 38px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding-top: 15%;
+    font-size: 48px;
+  }
+}

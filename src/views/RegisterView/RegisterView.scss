@@ -5,7 +5,7 @@
   background-color: pink;
 
   @media screen and (min-width: $desktop) {
-    background-image: url('https://pixabay.com/get/gc21e435d19216420fd978159c35ffcd16574181758381b1c0f24571ae3fa4162350ea38e14199a96a8629b1fdd82a932d1864d85d26232d8a2cef75b29222650_1280.jpg');
+    background: url('../../images/Registration-Views.jpg');
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -43,7 +43,7 @@
   background-color: wheat;
 
   @media screen and (min-width: $desktop) {
-    background-image: url('https://pixabay.com/get/g450416ee8cde2aa7fde5a143d78fc8c357e4dd85df4413bcb7761ab74369ece71d3c56ef5dee92baec0c3c2abfd5c81338fa57bb180fc4cf8f40fc268cce5cfc_1280.jpg');
+    background: url('../../images/Login-Views.jpg');
     background-repeat: no-repeat;
     background-size: cover;
   }

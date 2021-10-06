@@ -6,19 +6,21 @@
 
 %button {
   font: inherit;
-  color: inherit;
+  color: $indigo;
   cursor: pointer;
 
   border-radius: 4px;
-  border: 1px solid $grey;
+  border: 1px solid $indigo;
   background-color: transparent;
-  font-size: 14px;
+  font-size: 18px;
   padding: 5px;
+  width: 100%;
 
-  transition: background-color $timing-function;
+  transition: background-color color $timing-function;
 
   &:hover,
   &:focus {
     background-color: $indigo;
+    color: $indigo-accent;
   }
 }

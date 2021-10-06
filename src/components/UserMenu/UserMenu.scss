@@ -27,13 +27,3 @@
     max-width: 250px;
   }
 }
-
-.usermenu__buuton {
-  color: $indigo;
-  padding: 3px 10px;
-  font-size: 12px;
-
-  @media screen and (min-width: $tablet) {
-    font-size: 16px;
-  }
-}

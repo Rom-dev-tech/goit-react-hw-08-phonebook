@@ -2,7 +2,7 @@
 
 .register__wrapper {
   height: 100vh;
-  background-color: pink;
+  background-color: tomato;
 
   @media screen and (min-width: $desktop) {
     background: url('../../images/Registration-Views.jpg');
@@ -18,7 +18,7 @@
 }
 
 .form {
-  width: 320px;
+  max-width: 320px;
   margin: 0 auto;
 }
 
@@ -27,15 +27,16 @@
   flex-direction: column;
   margin-bottom: 15px;
 
+  font-size: 18px;
+  font-weight: 900;
   color: $white;
-}
 
-.register__button {
-  color: $indigo;
-  padding: 3px 10px;
-  border-radius: 5px;
-  border: 1px solid $indigo;
-  padding: 5px 10px;
+  transition: color $timing-function;
+
+  &:hover,
+  &:focus {
+    color: $indigo;
+  }
 }
 
 .login__wrapper {
@@ -49,8 +50,18 @@
   }
 }
 
-input {
+.input {
   border-radius: 5px;
-  border: none;
-  padding: 5px 10px;
+  border: 3px solid $white;
+  padding: 10px;
+
+  font-size: 18px;
+
+  color: $white;
+  background-color: transparent;
+
+  &::placeholder {
+    color: $grey;
+    opacity: 0.5;
+  }
 }

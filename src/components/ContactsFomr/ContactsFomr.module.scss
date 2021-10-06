@@ -1,0 +1,45 @@
+@import 'styles/shared.scss';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+
+  color: $indigo-accent;
+
+  transition: color $timing-function;
+
+  &:hover,
+  &:focus {
+    color: $indigo;
+  }
+}
+
+.input {
+  border-radius: 5px;
+  border: 2px solid $indigo-accent;
+  padding: 10px;
+
+  font-size: 18px;
+
+  color: $indigo-accent;
+  background-color: transparent;
+
+  &::placeholder {
+    color: $grey;
+    opacity: 0.5;
+  }
+}
+
+.form__name {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+}

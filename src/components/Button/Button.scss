@@ -1,0 +1,11 @@
+@import 'styles/shared.scss';
+
+.big__button {
+  @extend %button;
+}
+
+.small__button {
+  @extend %button;
+  width: 80px;
+  font-size: 14px;
+}

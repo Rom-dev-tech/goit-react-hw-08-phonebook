@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import NotificatiomMessage from 'components/NotificatiomMessage';
 import { authOperations, authSelectors } from 'redux/auth';
 import Container from 'components/Container';
+import Button from 'components/Button';
 import 'views/RegisterView/RegisterView.scss';
 
 const RegisterView = () => {
@@ -50,7 +51,9 @@ const RegisterView = () => {
           <label className="label">
             Name
             <input
+              className="input"
               type="text"
+              placeholder="enter your name"
               name="name"
               value={name}
               onChange={handleChange}
@@ -60,7 +63,9 @@ const RegisterView = () => {
           <label className="label">
             Email
             <input
+              className="input"
               type="email"
+              placeholder="enter your email"
               name="email"
               value={email}
               onChange={handleChange}
@@ -70,16 +75,16 @@ const RegisterView = () => {
           <label className="label">
             Pasword
             <input
+              className="input"
               type="password"
+              placeholder="enter your password"
               name="password"
               value={password}
               onChange={handleChange}
             />
           </label>
 
-          <button className="register__button" type="submit">
-            Sign up
-          </button>
+          <Button type="submit" discription="Sign up" variant="big__button" />
         </form>
         {chackOnError && errorMessage && (
           <NotificatiomMessage color="red" message={errorMessage} />

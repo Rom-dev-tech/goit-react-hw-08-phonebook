@@ -3,9 +3,10 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { contactsOparations, contactsSelectors } from 'redux/phonebook';
 import toastr from 'toastr';
+import Button from 'components/Button';
 import toastrOptions from 'components/Notification';
 import useInput from 'Hooks/useInput';
-import 'components/ContactsFomr/ContactsFomr.scss';
+import s from 'components/ContactsFomr/ContactsFomr.module.scss';
 
 const ContactsFomr = ({ onClose }) => {
   const inputName = useInput('');
@@ -48,12 +49,12 @@ const ContactsFomr = ({ onClose }) => {
   };
 
   return (
-    <form className="form" onSubmit={onSubmit}>
-      <label className="form__label">
-        <span className="form__name">Name</span>
+    <form className={s.form} onSubmit={onSubmit}>
+      <label className={s.label}>
+        <span className={s.form__name}>Name</span>
         <input
           {...inputName.bind}
-          className="form__input"
+          className={s.input}
           autoComplete="off"
           type="text"
           name="name"
@@ -64,11 +65,11 @@ const ContactsFomr = ({ onClose }) => {
         />
       </label>
 
-      <label className="form__label">
-        <span className="form__name">Number</span>
+      <label className={s.label}>
+        <span className={s.form__name}>Number</span>
         <input
-          className="form__input"
           {...inputNumber.bind}
+          className={s.input}
           autoComplete="off"
           type="tel"
           name="number"
@@ -78,9 +79,7 @@ const ContactsFomr = ({ onClose }) => {
           required
         />
       </label>
-      <button className="form__button" type="submit">
-        Add contact
-      </button>
+      <Button type="submit" discription="Add contact" variant="big__button" />
     </form>
   );
 };

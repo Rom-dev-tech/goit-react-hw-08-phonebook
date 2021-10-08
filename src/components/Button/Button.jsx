@@ -5,7 +5,7 @@ import 'components/Button/Button.scss';
 const Button = ({ type, discription, onClick, variant, disabled }) => {
   return (
     <button
-      className={variant}
+      className={disabled ? 'disabled' : variant}
       type={type}
       onClick={onClick}
       disabled={disabled}

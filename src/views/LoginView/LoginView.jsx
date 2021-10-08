@@ -1,6 +1,9 @@
+import React from 'react';
+import { Formik } from 'formik';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import Container from 'components/Container';
 import NotificatiomMessage from 'components/NotificatiomMessage';
 import Button from 'components/Button';
 import { authOperations, authSelectors } from 'redux/auth';
@@ -8,8 +11,8 @@ import 'views/RegisterView/RegisterView.scss';
 
 const LoginView = () => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
   const [chackOnError, setChackOnError] = useState(true);
 
   const errorMessage = useSelector(authSelectors.getErrorMessage);
@@ -18,30 +21,104 @@ const LoginView = () => {
     setChackOnError(false);
   }, []);
 
-  const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
-      case 'email':
-        return setEmail(value);
-      case 'password':
-        return setPassword(value);
-      default:
-        return;
+  const initialValues = { email: '', password: '' };
+
+  const validate = (values) => {
+    const errors = {};
+    if (!values.email) {
+      errors.email = 'Required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+      errors.email = 'Invalid email address';
     }
+
+    return errors;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleChange = ({ target: { name, value } }) => {
+  //   switch (name) {
+  //     case 'email':
+  //       return setEmail(value);
+  //     case 'password':
+  //       return setPassword(value);
+  //     default:
+  //       return;
+  //   }
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   dispatch(authOperations.logIn(initialValues.email, initialValues.password));
+  //   setEmail('');
+  //   setPassword('');
+  //   setChackOnError(true);
+  // };
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    const email = values.email;
+    const password = values.password;
     dispatch(authOperations.logIn({ email, password }));
-    setEmail('');
-    setPassword('');
+    setSubmitting(false);
     setChackOnError(true);
   };
 
   return (
-    <div className="login__wrapper">
+    <section className="login__wrapper">
       <h1 className="register__title">Login to Service</h1>
+      <Container>
+        <Formik
+          initialValues={initialValues}
+          validate={validate}
+          onSubmit={handleSubmit}
+        >
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+          }) => (
+            <form onSubmit={handleSubmit} className="form" autoComplete="off">
+              <label htmlFor="email" className="label">
+                Email:
+                <input
+                  className="input"
+                  type="email"
+                  name="email"
+                  placeholder="enter your email"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.email}
+                />
+              </label>
+              {errors.email && touched.email && errors.email}
 
-      <form onSubmit={handleSubmit} className="form" autoComplete="off">
+              <label htmlFor="password" className="label">
+                Password:
+                <input
+                  className="input"
+                  type="password"
+                  name="password"
+                  placeholder="enter your password"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                />
+              </label>
+              {errors.password && touched.password && errors.password}
+
+              <Button
+                type="submit"
+                discription="Sign in"
+                variant="big__button"
+                disabled={isSubmitting}
+              />
+            </form>
+          )}
+        </Formik>
+
+        {/* <form onSubmit={handleSubmit} className="form" autoComplete="off">
         <label className="label">
           Email
           <input
@@ -67,12 +144,13 @@ const LoginView = () => {
         </label>
 
         <Button type="submit" discription="Sign in" variant="big__button" />
-      </form>
+      </form> */}
 
-      {chackOnError && errorMessage && (
-        <NotificatiomMessage color="red" message={errorMessage} />
-      )}
-    </div>
+        {chackOnError && errorMessage && (
+          <NotificatiomMessage color="red" message={errorMessage} />
+        )}
+      </Container>
+    </section>
   );
 };
 

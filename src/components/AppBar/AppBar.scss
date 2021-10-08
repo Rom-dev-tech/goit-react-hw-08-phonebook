@@ -1,10 +1,15 @@
 @import 'styles/shared';
 
-.header {
-  border-bottom: 1px solid $grey;
+.header__wrapper {
+  position: fixed;
+  border-bottom: 1px solid $indigo;
+  min-width: 100%;
+
+  background-color: $white;
+  z-index: 1;
 }
 
-.header__wrapper {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;

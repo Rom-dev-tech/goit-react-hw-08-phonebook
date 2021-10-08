@@ -9,9 +9,9 @@ import 'components/AppBar/AppBar.scss';
 const AppBar = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
-    <div className="header">
+    <div className="header__wrapper">
       <Container>
-        <header className="header__wrapper">
+        <header className="header">
           <Navigation />
           {isLoggedIn ? <UserMenu /> : <AuthNav />}
         </header>

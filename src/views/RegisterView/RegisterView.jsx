@@ -47,7 +47,11 @@ const RegisterView = () => {
       <Container>
         <h1 className="register__title">Registration</h1>
 
-        <form onSubmit={handleSubmit} className="form" autoComplete="off">
+        <form
+          onSubmit={handleSubmit}
+          className="form form--center"
+          autoComplete="off"
+        >
           <label className="label">
             Name
             <input

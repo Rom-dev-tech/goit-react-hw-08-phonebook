@@ -1,14 +1,14 @@
 @import 'styles/shared';
 
 .phonebook__section {
-  padding: 50px 0;
-  height: 100vh;
+  padding: 40px 0;
+  min-height: 100vh;
+  text-align: center;
+  margin: 0;
 
-  background-image: url('http://bgfons.com/upload/paper_grid_PNG5421.png');
-
-  @media screen and (min-width: $desktop) {
-    background: url('../../images/Phonebook-Views.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+  background: url('../../images/paper.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  background-attachment: fixed;
 }

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import authHalpers from 'views/functionsHelpersForRegistration';
 import Container from 'components/Container';
 import NotificatiomMessage from 'components/NotificatiomMessage';
 import Button from 'components/Button';
@@ -19,29 +21,15 @@ const LoginView = () => {
     setChackOnError(false);
   }, []);
 
-  const initialValues = {
+  const INITIAL_VALUES = {
     email: '',
     password: '',
   };
 
-  const validate = (values) => {
-    const errors = {};
-
-    if (!values.email) {
-      errors.email = 'Required';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-      errors.email = 'Invalid email address';
-    }
-
-    if (!values.password) {
-      errors.password = 'Required';
-    } else if (values.password.length < 7 || values.password.length > 15) {
-      errors.password =
-        'Invalid password. Password should be greater then 7 symbols and less then 15 symbols';
-    }
-
-    return errors;
-  };
+  const SigninSchema = Yup.object().shape({
+    email: authHalpers.email(),
+    password: authHalpers.password(),
+  });
 
   const handleSubmit = (values, { setSubmitting }) => {
     const email = values.email;
@@ -51,20 +39,13 @@ const LoginView = () => {
     setChackOnError(true);
   };
 
-  const disabled = (isSubmitting, errors, touched) => {
-    return (
-      isSubmitting ||
-      !(Object.keys(errors).length === 0 && Object.keys(touched).length)
-    );
-  };
-
   return (
     <section className="login__wrapper">
       <h1 className="register__title">Login to Service</h1>
       <Container>
         <Formik
-          initialValues={initialValues}
-          validate={validate}
+          initialValues={INITIAL_VALUES}
+          validationSchema={SigninSchema}
           onSubmit={handleSubmit}
         >
           {({ isSubmitting, errors, touched }) => (
@@ -93,7 +74,7 @@ const LoginView = () => {
                 type="submit"
                 discription="Sign in"
                 variant="big__button"
-                disabled={disabled(isSubmitting, errors, touched)}
+                disabled={authHalpers.disabled(isSubmitting, errors, touched)}
               ></Button>
             </Form>
           )}

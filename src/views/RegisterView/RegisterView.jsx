@@ -4,7 +4,9 @@ import * as Yup from 'yup';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import authHalpers from 'views/functionsHelpersForRegistration';
+import { MdVisibilityOff } from 'react-icons/md';
+import { MdVisibility } from 'react-icons/md';
+import AuthHalpers from 'views/functionsHelpersForRegistration';
 import NotificatiomMessage from 'components/NotificatiomMessage';
 import { authOperations, authSelectors } from 'redux/auth';
 import Container from 'components/Container';
@@ -14,6 +16,8 @@ import 'views/RegisterView/RegisterView.scss';
 const RegisterView = () => {
   const dispatch = useDispatch();
   const [chackOnError, setChackOnError] = useState(true);
+
+  const authHalpers = AuthHalpers.HandleVisibilityPassword(false);
 
   useEffect(() => {
     setChackOnError(false);
@@ -29,10 +33,10 @@ const RegisterView = () => {
   };
 
   const SignupSchema = Yup.object().shape({
-    name: authHalpers.name(),
-    email: authHalpers.email(),
-    password: authHalpers.password(),
-    confirmPassword: authHalpers.confirmPassword(),
+    name: AuthHalpers.nameYupValidation(),
+    email: AuthHalpers.emailYupValidation(),
+    password: AuthHalpers.passwordYupValidation(),
+    confirmPassword: AuthHalpers.confirmPasswordYupValidation(),
   });
 
   const handleSubmit = (values, { setSubmitting }) => {
@@ -79,28 +83,52 @@ const RegisterView = () => {
               <label htmlFor="password" className="label">
                 Password: <ErrorMessage name="password" />
                 <Field
-                  type="password"
+                  type={authHalpers.showPassword ? 'text' : 'password'}
                   name="password"
                   className="input"
                   placeholder="enter your password"
                 />
+                <span
+                  className="visibility__icon"
+                  aria-label="toggle password visibility"
+                  onClick={authHalpers.handleClickShowPassword}
+                  onMouseDown={AuthHalpers.handleMouseDownPassword}
+                >
+                  {authHalpers.showPassword ? (
+                    <MdVisibilityOff />
+                  ) : (
+                    <MdVisibility />
+                  )}
+                </span>
               </label>
 
               <label htmlFor="confirmPassword" className="label">
                 ConfirmPassword: <ErrorMessage name="confirmPassword" />
                 <Field
-                  type="password"
+                  type={authHalpers.showConfirmPassword ? 'text' : 'password'}
                   name="confirmPassword"
                   className="input"
                   placeholder="confirm your password"
                 />
+                <span
+                  className="visibility__icon"
+                  aria-label="toggle password visibility"
+                  onClick={authHalpers.handleClickShowConfirmPassword}
+                  onMouseDown={AuthHalpers.handleMouseDownPassword}
+                >
+                  {authHalpers.showConfirmPassword ? (
+                    <MdVisibilityOff />
+                  ) : (
+                    <MdVisibility />
+                  )}
+                </span>
               </label>
 
               <Button
                 type="submit"
                 discription="Sign up"
                 variant="big__button"
-                disabled={authHalpers.disabled(isSubmitting, errors, touched)}
+                disabled={AuthHalpers.disabled(isSubmitting, errors, touched)}
               ></Button>
             </Form>
           )}

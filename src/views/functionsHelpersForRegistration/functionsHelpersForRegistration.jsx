@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { useState } from 'react';
 
 const disabled = (isSubmitting, errors, touched) => {
   return (
@@ -7,28 +8,51 @@ const disabled = (isSubmitting, errors, touched) => {
   );
 };
 
-const name = () =>
+const nameYupValidation = () =>
   Yup.string().min(3, 'should have at least 3 symbol').required('Required');
 
-const email = () =>
+const emailYupValidation = () =>
   Yup.string().email('Invalid email address').required('Required');
 
-const password = () =>
+const passwordYupValidation = () =>
   Yup.string()
     .min(7, 'should be greater then 7 symbols')
     .max(15, 'should be less then 15 symbols')
     .required('Required');
 
-const confirmPassword = () =>
+const confirmPasswordYupValidation = () =>
   Yup.string()
     .oneOf([Yup.ref('password'), null], 'shoul be equal to password')
     .required('Required');
 
+export const handleMouseDownPassword = (event) => {
+  event.preventDefault();
+};
+
+export const HandleVisibilityPassword = (initialValue) => {
+  const [showPassword, setShowPassword] = useState(initialValue);
+  const [showConfirmPassword, setConfirmPassword] = useState(initialValue);
+
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+
+  const handleClickShowConfirmPassword = () =>
+    setConfirmPassword(!showConfirmPassword);
+
+  return {
+    showPassword,
+    showConfirmPassword,
+    handleClickShowPassword,
+    handleClickShowConfirmPassword,
+  };
+};
+
 const authHalpers = {
   disabled,
-  name,
-  email,
-  password,
-  confirmPassword,
+  nameYupValidation,
+  emailYupValidation,
+  passwordYupValidation,
+  confirmPasswordYupValidation,
+  handleMouseDownPassword,
+  HandleVisibilityPassword,
 };
 export default authHalpers;

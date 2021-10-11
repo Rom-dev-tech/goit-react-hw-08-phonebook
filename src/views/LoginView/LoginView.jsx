@@ -4,7 +4,9 @@ import * as Yup from 'yup';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import authHalpers from 'views/functionsHelpersForRegistration';
+import { MdVisibilityOff } from 'react-icons/md';
+import { MdVisibility } from 'react-icons/md';
+import AuthHalpers from 'views/functionsHelpersForRegistration';
 import Container from 'components/Container';
 import NotificatiomMessage from 'components/NotificatiomMessage';
 import Button from 'components/Button';
@@ -17,6 +19,8 @@ const LoginView = () => {
 
   const errorMessage = useSelector(authSelectors.getErrorMessage);
 
+  const authHalpers = AuthHalpers.HandleVisibilityPassword(false);
+
   useEffect(() => {
     setChackOnError(false);
   }, []);
@@ -27,8 +31,8 @@ const LoginView = () => {
   };
 
   const SigninSchema = Yup.object().shape({
-    email: authHalpers.email(),
-    password: authHalpers.password(),
+    email: AuthHalpers.emailYupValidation(),
+    password: AuthHalpers.passwordYupValidation(),
   });
 
   const handleSubmit = (values, { setSubmitting }) => {
@@ -63,18 +67,30 @@ const LoginView = () => {
               <label htmlFor="password" className="label">
                 Password: <ErrorMessage name="password" />
                 <Field
-                  type="password"
+                  type={authHalpers.showPassword ? 'text' : 'password'}
                   name="password"
                   className="input"
                   placeholder="enter your password"
                 />
+                <span
+                  className="visibility__icon"
+                  aria-label="toggle password visibility"
+                  onClick={authHalpers.handleClickShowPassword}
+                  onMouseDown={AuthHalpers.handleMouseDownPassword}
+                >
+                  {authHalpers.showPassword ? (
+                    <MdVisibilityOff />
+                  ) : (
+                    <MdVisibility />
+                  )}
+                </span>
               </label>
 
               <Button
                 type="submit"
                 discription="Sign in"
                 variant="big__button"
-                disabled={authHalpers.disabled(isSubmitting, errors, touched)}
+                disabled={AuthHalpers.disabled(isSubmitting, errors, touched)}
               ></Button>
             </Form>
           )}

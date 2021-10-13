@@ -14,7 +14,7 @@ const Navigation = () => {
       {isLoggedIn && (
         <>
           <NavLink
-            to="/todos"
+            to="/contacts"
             exact
             className="link"
             activeClassName="activeLink"

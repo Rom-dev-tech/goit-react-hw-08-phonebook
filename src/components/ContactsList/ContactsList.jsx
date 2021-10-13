@@ -5,7 +5,6 @@ import { contactsOparations, contactsSelectors } from 'redux/phonebook';
 import Title from 'components/Title';
 import Filter from 'components/Filter';
 import EditContactsForm from 'components/EditContactsForm';
-import NotificatiomMessage from 'components/NotificatiomMessage';
 import IconButton from 'components/IconButton';
 import { ReactComponent as DeleteIcon } from 'icons/delete.svg';
 import 'components/ContactsList/ContactsList.scss';
@@ -21,7 +20,7 @@ const ContactsList = () => {
   return (
     <>
       {totalContacts <= 0 ? (
-        <NotificatiomMessage message={'no contacts yet ...'} />
+        <p className="contacts__message">no contacts yet ...</p>
       ) : (
         <>
           <Title title="Contacts" type="h1" />

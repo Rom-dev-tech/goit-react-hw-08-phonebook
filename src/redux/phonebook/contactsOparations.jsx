@@ -41,3 +41,20 @@ export const deleteContact = (contactId) => async (dispatch) => {
     dispatch(contactsActions.deleteContactError(error));
   }
 };
+
+export const editContact = (id, name, number) => async (dispatch) => {
+  const contact = {
+    name,
+    number,
+  };
+
+  dispatch(contactsActions.editContactRequest());
+
+  try {
+    const { data } = await axios.patch(`/contacts/${id}`, contact);
+
+    dispatch(contactsActions.editContactSuccess(data));
+  } catch (error) {
+    dispatch(contactsActions.editContactError(error));
+  }
+};

@@ -1,13 +1,13 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaUser, FaPhone } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
 import { contactsOparations, contactsSelectors } from 'redux/phonebook';
 import Title from 'components/Title';
 import Filter from 'components/Filter';
+import EditContactsForm from 'components/EditContactsForm';
 import NotificatiomMessage from 'components/NotificatiomMessage';
 import IconButton from 'components/IconButton';
-import { ReactComponent as AddIcon } from 'icons/delete.svg';
+import { ReactComponent as DeleteIcon } from 'icons/delete.svg';
 import 'components/ContactsList/ContactsList.scss';
 
 const ContactsList = () => {
@@ -53,8 +53,10 @@ const ContactsList = () => {
                   onClick={() => onDeleteContact(id)}
                   aria-label="delete contact"
                 >
-                  <AddIcon width="20" height="20" fill="red" />
+                  <DeleteIcon width="20" height="20" fill="red" />
                 </IconButton>
+
+                <EditContactsForm id={id} name={name} number={number} />
               </li>
             ))}
           </ul>

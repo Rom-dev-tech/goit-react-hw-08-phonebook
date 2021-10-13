@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { contactsOparations, contactsSelectors } from 'redux/phonebook';
+import FormHalper from 'components/functionsHelpersForForm';
 import ContactsFomr from 'components/ContactsFomr';
 import ContactsList from 'components/ContactsList';
 import Clock from 'components/Clock';
@@ -17,7 +18,7 @@ import NotificatiomMessage from 'components/NotificatiomMessage';
 import 'views/PhoneBookView/PhoneBookView.scss';
 
 const PhoneBookView = () => {
-  const [showModal, setShowModal] = useState(false);
+  const formHalper = FormHalper.HandleToggle(false);
 
   const dispatch = useDispatch();
 
@@ -28,10 +29,6 @@ const PhoneBookView = () => {
     dispatch(contactsOparations.fetchContacts());
   }, [dispatch]);
 
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
-
   return (
     <section className="phonebook__section">
       <Container>
@@ -41,14 +38,14 @@ const PhoneBookView = () => {
         <FlexWrapper>
           <Сounter title="Total contacts:" />
 
-          <IconButton onClick={toggleModal} aria-label="add contact">
+          <IconButton onClick={formHalper.toggleModal} aria-label="add contact">
             <AddIcon width="20" height="20" fill="#03a9f4" />
           </IconButton>
         </FlexWrapper>
 
-        {showModal && (
-          <Modal onClose={toggleModal}>
-            <ContactsFomr onClose={toggleModal} />
+        {formHalper.showModal && (
+          <Modal onClose={formHalper.toggleModal}>
+            <ContactsFomr onClose={formHalper.toggleModal} />
           </Modal>
         )}
 
